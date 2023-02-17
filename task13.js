@@ -54,6 +54,16 @@ class Stack extends LinkedList {
     }
 }
 
+var readline = require('readline');
+var rl = readline.createInterface({
+	input: process.stdin,
+	output: process.stdout
+});
+
+rl.on('line', function(cmd) {
+    console.log(main(cmd));
+});
+
 function main(cmd) {
     if(!cmd.length) return 0;
     let digits = new Stack();
@@ -64,7 +74,7 @@ function main(cmd) {
             continue;
         }
         // если приходит цифра - записываем в digits
-        else if (parseInt(cmd[i])) {
+        else if (parseInt(cmd[i]) || parseInt(cmd[i]) === 0) {
             digits.push(parseInt(cmd[i]))
         }
         // если приходит операнд - выполняем 
@@ -95,5 +105,3 @@ function main(cmd) {
     }
     return digits.pop();
 }
-
-main("8 9 + 1 7 - *");

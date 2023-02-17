@@ -1,3 +1,13 @@
+var readline = require('readline');
+var rl = readline.createInterface({
+	input: process.stdin,
+	output: process.stdout
+});
+
+rl.on('line', function (cmd) {
+    hystogram(cmd);
+});
+
 function hystogram(string) {
     let abc = {};
     let layers = [];
@@ -47,15 +57,3 @@ function hystogram(string) {
 
     return abc;
 }
-
-hystogram(` &
-!
-a
-123 33
- `);
-
-hystogram(` &
-!
-a
-123 33
- `);
