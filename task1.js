@@ -53,3 +53,9 @@ hystogram(` &
 a
 123 33
  `);
+
+hystogram(` &
+!
+a
+123 33
+ `);
