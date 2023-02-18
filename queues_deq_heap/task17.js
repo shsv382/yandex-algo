@@ -9,10 +9,11 @@ class Queue {
         this.array[this.tail] = parseInt(n);
         this.tail = (this.tail + 1) % 10;
         this.length++;
+        return 'ok';
     }
     pop() {
         if (this.length < 1) return 'error';
-        this.head = (this.head + 1) % 10;
+        this.head = (this.head + 1) % 10
         let answer = this.array[this.head];
         this.array[this.head] = null;
         this.length--;
@@ -25,7 +26,30 @@ class Queue {
     size() {
         return this.length;
     }
+    clear() {
+        this.array = new Array(10);
+        this.head = 0;
+        this.tail = 1;
+        this.length = 0;
+        return 'ok';
+    }
 }
+
+var readline = require('readline');
+var rl = readline.createInterface({
+	input: process.stdin,
+	output: process.stdout
+});
+
+let args = [];
+
+rl.on('line', function (cmd) {
+    args.push(cmd);
+    if (args.length > 1) {
+        console.log(main(args));
+        args = [];
+    }
+});
 
 function main(args) {
     let player1 = new Queue();
@@ -51,14 +75,10 @@ function main(args) {
         count++;
     }
     if (!player1.size()) {
-        console.log(`second ${count}`)
+        return `second ${count}`
     } else if (!player2.size()) {
-        console.log(`first ${count}`)
+        return `first ${count}`
     } else {
-        console.log('botva')
+        return 'botva'
     }
-    return
 }
-
-
-console.log(main([ '2 4 6 8 0', '1 3 5 7 9' ]));
