@@ -1,6 +1,14 @@
-function hystogram(string) {
+let cnt, res;
+process.stdin.on('data', data => {
+     res = hystogram(data);
+     
+     process.stdout.write(res + '');
+     process.exit();
+});
+
+function hystogram(data) {
+    let string = data.toString();
     let abc = {};
-    let layers = [];
     let max = 0;
 
     class Node {
@@ -13,7 +21,7 @@ function hystogram(string) {
 
     // Добавление элемента 
     for (let i=0; i<string.length; i++) {
-        if(string[i].charCodeAt(0) !== 32 && string[i].charCodeAt(0) !== 10) {
+        if(string[i].charCodeAt(0) !== 32 && string[i].charCodeAt(0) !== 10 && string[i].charCodeAt(0) !== 13) {
             if(abc[string[i].charCodeAt(0)]) {
                 abc[string[i].charCodeAt(0)].value++;
             } else {
@@ -25,7 +33,6 @@ function hystogram(string) {
 
     // Сортировка
     abc = Object.values(abc).sort((a,b) => a.code - b.code);
-
     // Вывод - неоптимальный
     let output = [];
     while(max > 0) {
@@ -38,18 +45,9 @@ function hystogram(string) {
             }
         })
         str = str.join("");
-        console.log(str)
-        output.push(str);
+        output.push(str)
         max--
     }
-    console.log(Object.values(abc).map(node => node.letter).join(""));
-    output.push(abc)
-
-    return abc;
+    output.push(Object.values(abc).map(node => node.letter).join(""));
+    return output.join(`\n`);
 }
-
-hystogram(` &
-!
-a
-123 33
- `);
