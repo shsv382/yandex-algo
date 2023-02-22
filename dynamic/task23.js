@@ -1,4 +1,6 @@
-    let number = 54;
+let cnt, res;
+process.stdin.on('data', data => {
+    let number = parseInt(data.toString());
     let counts = [0,0,1,1];
 
     function calc(num) {
@@ -80,5 +82,7 @@
     }
 
     console.log(calc(number));
-    // console.log(getPrevs(number).join(' '));
      
+    // process.stdout.write(res + calc(number));
+    process.exit();
+});
