@@ -22,4 +22,3 @@ for (let i=3; i<result.length; i++) {
 }
 
 fs.appendFileSync("output.txt", dp[dp.length - 1].toString().trim());
-// process.stdout.write(dp[dp.length - 1].toString());
