@@ -6,7 +6,7 @@ let result = [
     [Infinity, Infinity, Infinity]
 ];
 
-fs.readFileSync("input.txt", "utf8").toString().split('\n').forEach((item,i) => {
+fs.readFileSync("input.txt", "utf8").toString().trim().split('\n').forEach((item,i) => {
     if (i > 0) {
         result.push(item.split(' ').map(i => parseInt(i)));
     }
