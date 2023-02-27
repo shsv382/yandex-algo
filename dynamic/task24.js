@@ -6,7 +6,7 @@ let result = [
     [Infinity, Infinity, Infinity]
 ];
 
-fs.readFileSync("input.txt", "utf8").toString().split('\n').forEach((item,i) => {
+fs.readFileSync("input.txt", "utf8").toString().trim().split('\n').forEach((item,i) => {
     if (i > 0) {
         result.push(item.split(' ').map(i => parseInt(i)));
     }
@@ -22,4 +22,3 @@ for (let i=3; i<result.length; i++) {
 }
 
 fs.appendFileSync("output.txt", dp[dp.length - 1].toString().trim());
-// process.stdout.write(dp[dp.length - 1].toString());
