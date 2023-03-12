@@ -26,14 +26,17 @@ fs.readFileSync("input.txt", "utf8").toString().trim().split('\n').map((item, i)
 });
 
 function dfs(graph, visited, localVisited, now) {
-    visited[now] = now;
-    localVisited.push(now);
-    if(graph[now]) {
-        graph[now].forEach(neig => {
-            if (!visited[neig]) {
-                dfs(graph, visited, localVisited, neig);
-            }
-        });
+    let stack = [now]
+    while(stack.length) {
+        visited[now] = stack.pop();
+        localVisited.push(now);
+        if(graph[now]) {
+            graph[now].forEach(neig => {
+                if (!visited[neig]) {
+                    stack.push(neig);
+                }
+            });
+        }
     }
 }
 
@@ -59,18 +62,3 @@ output.forEach(item => {
     fs.appendFileSync("output.txt", item.join(' ').trim());
     fs.appendFileSync("output.txt", '\r\n');
 })
-
-// let result = visited.reduce(function(accumulator, item) {
-//     if (item) accumulator.push(item);
-//     return accumulator;
-// }, []);
-
-// if (result.length) {
-//     fs.appendFileSync("output.txt", (result.length).toString());
-//     fs.appendFileSync("output.txt", '\r\n');
-//     fs.appendFileSync("output.txt", result.join(' ').trim());
-// } else {
-//     fs.appendFileSync("output.txt", '0');
-//     fs.appendFileSync("output.txt", '\r\n');
-//     fs.appendFileSync("output.txt", '0');
-// }
