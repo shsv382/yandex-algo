@@ -31,7 +31,9 @@ function dfs(graph, visited, localVisited, now) {
     if(graph[now]) {
         graph[now].forEach(neig => {
             if (!visited[neig]) {
-                dfs(graph, visited, localVisited, neig);
+                new Promise((rs, rj) => {
+                    rs(dfs(graph, visited, localVisited, neig));
+                });
             }
         });
     }
